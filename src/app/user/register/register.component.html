@@ -1,0 +1,76 @@
+<!-- Registration Form -->
+<form [formGroup]="registerForm">
+  <!-- Name -->
+  <div class="mb-3">
+    <label class="inline-block mb-2">Name</label>
+    <input class="block w-full py-1.5 px-3 text-gray-200 border border-gray-400 transition
+                  duration-500 focus:outline-none rounded bg-transparent focus:border-indigo-400"
+           formControlName="name"
+           placeholder="Enter Name"
+           type="text"/>
+    <p *ngIf="registerForm.controls.name.errors?.['required']"
+       class="text-red-400 text-xs italic">
+      Please enter your name.
+    </p>
+
+    <p *ngIf="registerForm.controls.name.errors?.['minlength']"
+       class="text-red-400 text-xs italic">
+      Name must be at least 3 characters long.
+    </p>
+
+    <p *ngIf="registerForm.controls.name.errors?.['maxlength']"
+       class="text-red-400 text-xs italic">
+      Name must be at most 20 characters long.
+    </p>
+  </div>
+  <!-- Email -->
+  <div class="mb-3">
+    <label class="inline-block mb-2">Email</label>
+    <input class="block w-full py-1.5 px-3 text-gray-200 border border-gray-400 transition
+                  duration-500 focus:outline-none rounded bg-transparent focus:border-indigo-400"
+           formControlName="email"
+           placeholder="Enter Email"
+           type="email"/>
+  </div>
+  <!-- Age -->
+  <div class="mb-3">
+    <label class="inline-block mb-2">Age</label>
+    <input class="block w-full py-1.5 px-3 text-gray-200 border border-gray-400 transition
+                  duration-500 focus:outline-none rounded bg-transparent focus:border-indigo-400"
+           formControlName="age"
+           placeholder="Enter Age"
+           type="number"/>
+  </div>
+  <!-- Password -->
+  <div class="mb-3">
+    <label class="inline-block mb-2">Password</label>
+    <input class="block w-full py-1.5 px-3 text-gray-200 border border-gray-400 transition
+                  duration-500 focus:outline-none rounded bg-transparent focus:border-indigo-400"
+           formControlName="password"
+           placeholder="Password"
+           type="password"/>
+  </div>
+  <!-- Confirm Password -->
+  <div class="mb-3">
+    <label class="inline-block mb-2">Confirm Password</label>
+    <input class="block w-full py-1.5 px-3 text-gray-200 border border-gray-400 transition
+                  duration-500 focus:outline-none rounded bg-transparent focus:border-indigo-400"
+           formControlName="confirmPassword"
+           placeholder="Confirm Password"
+           type="password"/>
+  </div>
+  <!-- Phone Number -->
+  <div class="mb-3">
+    <label class="inline-block mb-2">Phone Number</label>
+    <input class="block w-full py-1.5 px-3 text-gray-200 border border-gray-400 transition
+                  duration-500 focus:outline-none rounded bg-transparent focus:border-indigo-400"
+           formControlName="phoneNumber"
+           placeholder="Enter Phone Number"
+           type="text"/>
+  </div>
+  <button class="block w-full bg-indigo-400 text-white py-1.5 px-3 rounded transition
+                hover:bg-indigo-500"
+          type="submit">
+    Submit
+  </button>
+</form>
