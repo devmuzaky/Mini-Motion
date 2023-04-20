@@ -1,98 +1,96 @@
-<app-modal modalID="auth" >
+<app-modal modalID="auth">
 
-  <p class="text-2xl font-bold" heading >Your Account</p>
+  <p class="text-2xl font-bold" heading>Your Account</p>
 
-  <!-- Tabs -->
-  <ul class="flex flex-wrap mb-4">
-    <li class="flex-auto text-center">
-      <a class="block rounded py-3 px-4 transition hover:text-white text-white
-                bg-indigo-400" href="#">Login</a>
-    </li>
-    <li class="flex-auto text-center">
-      <a class="block rounded py-3 px-4 transition hover:text-indigo-400"
-         href="#">Register</a>
-    </li>
-  </ul>
-
-  <!-- Login Form -->
-  <form>
-    <!-- Email -->
-    <div class="mb-3">
-      <label class="inline-block mb-2">Email</label>
-      <input class="block w-full py-1.5 px-3 text-gray-200 border border-gray-400 transition
+  <app-taps-container>
+    <app-tap>
+      <!-- Login Form -->
+      <form>
+        <!-- Email -->
+        <div class="mb-3">
+          <label class="inline-block mb-2">Email</label>
+          <input class="block w-full py-1.5 px-3 text-gray-200 border border-gray-400 transition
                   duration-500 focus:outline-none rounded bg-transparent
                   focus:border-indigo-400"
-             placeholder="Enter Email"
-             type="email"/>
-    </div>
-    <!-- Password -->
-    <div class="mb-3">
-      <label class="inline-block mb-2">Password</label>
-      <input class="block w-full py-1.5 px-3 text-gray-200 border border-gray-400 transition
+                 placeholder="Enter Email"
+                 type="email"/>
+        </div>
+        <!-- Password -->
+        <div class="mb-3">
+          <label class="inline-block mb-2">Password</label>
+          <input class="block w-full py-1.5 px-3 text-gray-200 border border-gray-400 transition
                 duration-500 focus:outline-none rounded bg-transparent focus:border-indigo-400"
-             placeholder="Password"
-             type="password"/>
-    </div>
-    <button class="block w-full bg-indigo-400 text-white py-1.5 px-3 rounded transition
+                 placeholder="Password"
+                 type="password"/>
+        </div>
+        <button class="block w-full bg-indigo-400 text-white py-1.5 px-3 rounded transition
                 hover:bg-indigo-500"
-            type="submit">
-      Submit
-    </button>
-  </form>
-  <!-- Registration Form -->
-  <form>
-    <!-- Name -->
-    <div class="mb-3">
-      <label class="inline-block mb-2">Name</label>
-      <input class="block w-full py-1.5 px-3 text-gray-200 border border-gray-400 transition
+                type="submit">
+          Submit
+        </button>
+      </form>
+    </app-tap>
+
+    <app-tap>
+      <!-- Registration Form -->
+      <form>
+        <!-- Name -->
+        <div class="mb-3">
+          <label class="inline-block mb-2">Name</label>
+          <input class="block w-full py-1.5 px-3 text-gray-200 border border-gray-400 transition
                   duration-500 focus:outline-none rounded bg-transparent focus:border-indigo-400"
-             placeholder="Enter Name"
-             type="text"/>
-    </div>
-    <!-- Email -->
-    <div class="mb-3">
-      <label class="inline-block mb-2">Email</label>
-      <input class="block w-full py-1.5 px-3 text-gray-200 border border-gray-400 transition
+                 placeholder="Enter Name"
+                 type="text"/>
+        </div>
+        <!-- Email -->
+        <div class="mb-3">
+          <label class="inline-block mb-2">Email</label>
+          <input class="block w-full py-1.5 px-3 text-gray-200 border border-gray-400 transition
                   duration-500 focus:outline-none rounded bg-transparent focus:border-indigo-400"
-             placeholder="Enter Email"
-             type="email"/>
-    </div>
-    <!-- Age -->
-    <div class="mb-3">
-      <label class="inline-block mb-2">Age</label>
-      <input class="block w-full py-1.5 px-3 text-gray-200 border border-gray-400 transition
+                 placeholder="Enter Email"
+                 type="email"/>
+        </div>
+        <!-- Age -->
+        <div class="mb-3">
+          <label class="inline-block mb-2">Age</label>
+          <input class="block w-full py-1.5 px-3 text-gray-200 border border-gray-400 transition
                   duration-500 focus:outline-none rounded bg-transparent focus:border-indigo-400"
-             type="number"/>
-    </div>
-    <!-- Password -->
-    <div class="mb-3">
-      <label class="inline-block mb-2">Password</label>
-      <input class="block w-full py-1.5 px-3 text-gray-200 border border-gray-400 transition
+                 type="number"/>
+        </div>
+        <!-- Password -->
+        <div class="mb-3">
+          <label class="inline-block mb-2">Password</label>
+          <input class="block w-full py-1.5 px-3 text-gray-200 border border-gray-400 transition
                   duration-500 focus:outline-none rounded bg-transparent focus:border-indigo-400"
-             placeholder="Password"
-             type="password"/>
-    </div>
-    <!-- Confirm Password -->
-    <div class="mb-3">
-      <label class="inline-block mb-2">Confirm Password</label>
-      <input class="block w-full py-1.5 px-3 text-gray-200 border border-gray-400 transition
+                 placeholder="Password"
+                 type="password"/>
+        </div>
+        <!-- Confirm Password -->
+        <div class="mb-3">
+          <label class="inline-block mb-2">Confirm Password</label>
+          <input class="block w-full py-1.5 px-3 text-gray-200 border border-gray-400 transition
                   duration-500 focus:outline-none rounded bg-transparent focus:border-indigo-400"
-             placeholder="Confirm Password"
-             type="password"/>
-    </div>
-    <!-- Phone Number -->
-    <div class="mb-3">
-      <label class="inline-block mb-2">Phone Number</label>
-      <input class="block w-full py-1.5 px-3 text-gray-200 border border-gray-400 transition
+                 placeholder="Confirm Password"
+                 type="password"/>
+        </div>
+        <!-- Phone Number -->
+        <div class="mb-3">
+          <label class="inline-block mb-2">Phone Number</label>
+          <input class="block w-full py-1.5 px-3 text-gray-200 border border-gray-400 transition
                   duration-500 focus:outline-none rounded bg-transparent focus:border-indigo-400"
-             placeholder="Enter Phone Number"
-             type="text"/>
-    </div>
-    <button class="block w-full bg-indigo-400 text-white py-1.5 px-3 rounded transition
+                 placeholder="Enter Phone Number"
+                 type="text"/>
+        </div>
+        <button class="block w-full bg-indigo-400 text-white py-1.5 px-3 rounded transition
                 hover:bg-indigo-500"
-            type="submit">
-      Submit
-    </button>
-  </form>
+                type="submit">
+          Submit
+        </button>
+      </form>
+    </app-tap>
+  </app-taps-container>
+
+
+
 
 </app-modal>
