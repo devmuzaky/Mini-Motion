@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { TapsContainerComponent } from './taps-container.component';
+import { TabsContainerComponent } from './tabs-container.component';
 
 describe('TapsContainerComponent', () => {
-  let component: TapsContainerComponent;
-  let fixture: ComponentFixture<TapsContainerComponent>;
+  let component: TabsContainerComponent;
+  let fixture: ComponentFixture<TabsContainerComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ TapsContainerComponent ]
+      declarations: [ TabsContainerComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(TapsContainerComponent);
+    fixture = TestBed.createComponent(TabsContainerComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
