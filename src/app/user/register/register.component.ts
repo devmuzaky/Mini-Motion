@@ -8,14 +8,19 @@ import {FormBuilder, Validators} from "@angular/forms";
 })
 export class RegisterComponent {
 
+  showAlert = false;
+  alertMsg = 'Please wait! Your account is being created...';
+  alertColor = 'blue';
+
   registerForm = this.formBuilder.group({
     name: [
       '',
       [
         Validators.required,
         Validators.minLength(3),
-        Validators.maxLength(20)
-      ]
+        Validators.maxLength(20),
+      ],
+      {updateOn: 'blur'}
     ],
     email: [
       '',
@@ -37,7 +42,8 @@ export class RegisterComponent {
         Validators.required,
         Validators.minLength(8),
         Validators.maxLength(20),
-        Validators.pattern("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])[a-zA-Z0-9]+$") //at least one uppercase letter, one lowercase letter and one number
+        Validators.pattern("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\\$%\\^&\\*])(?=.{8,})")
+
       ]
     ],
     confirmPassword: [
@@ -58,7 +64,13 @@ export class RegisterComponent {
   });
 
   constructor(private formBuilder: FormBuilder) {
-   }
+  }
+
+  register() {
+    this.showAlert = true;
+    this.alertMsg = 'Please wait! Your account is being created...';
+    this.alertColor = 'blue';
+  }
 
 
 }

@@ -33,6 +33,15 @@
     You must enter a valid email address.
   </p>
 
+<!--  Validation for Age  -->
+
+  <p *ngIf="control.errors?.['min']"
+     class="text-red-400 text-xs italic">
+    You must be at least
+    {{control.errors?.['min'].min}}
+    years old.
+  </p>
+
 
   <p *ngIf="control.errors?.['pattern']"
      class="text-red-400 text-xs italic">

@@ -1,25 +1,54 @@
+<!--<app-alert *ngIf="true" >-->
+
+<!--    <div class="flex items-center bg-red-500 text-white text-sm font-bold px-4 py-3"-->
+<!--         role="alert">-->
+<!--      <svg class="fill-current w-4 h-4 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">-->
+<!--        <path-->
+<!--          d="M11.293 14.707a1 1 0 0 1-1.414 0L6.586 11.414a1 1 0 0 1 1.414-1.414l2.293 2.293 5.293-5.293a1 1 0 0 1 1.414 1.414l-6 6z"/>-->
+<!--      </svg>-->
+<!--      <p>There was an error logging in.</p>-->
+<!--    </div>-->
+<!--</app-alert>-->
+
+
 <!-- Login Form -->
-<form>
+<form #loginForm="ngForm" (ngSubmit)="login()" >
   <!-- Email -->
   <div class="mb-3">
     <label class="inline-block mb-2">Email</label>
-    <input class="block w-full py-1.5 px-3 text-gray-200 border border-gray-400 transition
+    <input #email="ngModel"
+           class="block w-full py-1.5 px-3 text-gray-200 border border-gray-400 transition
                   duration-500 focus:outline-none rounded bg-transparent
                   focus:border-indigo-400"
            placeholder="Enter Email"
+           name="email"
+           [(ngModel)]="credentials.email"
+           required
+           pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
            type="email"/>
+    <p class="text-red-400 " *ngIf="email.errors && email.touched && email.dirty">
+      Email is invalid.
+    </p>
   </div>
   <!-- Password -->
   <div class="mb-3">
     <label class="inline-block mb-2">Password</label>
-    <input class="block w-full py-1.5 px-3 text-gray-200 border border-gray-400 transition
+    <input #password='ngModel' class="block w-full py-1.5 px-3 text-gray-200 border border-gray-400 transition
                 duration-500 focus:outline-none rounded bg-transparent focus:border-indigo-400"
            placeholder="Password"
+           name="password"
+           [(ngModel)]="credentials.password"
+           required
            type="password"/>
+
+    <p class="text-red-400 " *ngIf="password.errors && password.touched && password.dirty">
+      Password is required.
+    </p>
+
   </div>
-  <button class="block w-full bg-indigo-400 text-white py-1.5 px-3 rounded transition
-                hover:bg-indigo-500"
-          type="submit">
+  <button class="block w-full bg-indigo-400 text-white py-1.5 px-3 rounded transition hover:bg-indigo-500 disabled:opacity-50 disabled:cursor-not-allowed disabled:bg-indigo-400"
+          type="submit"
+          [disabled]="loginForm.invalid">
     Submit
   </button>
 </form>

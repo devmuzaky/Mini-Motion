@@ -1,3 +1,6 @@
+
+<app-alert *ngIf="showAlert" [color]="alertColor" >{{alertMsg}}</app-alert>
+
 <!-- Registration Form -->
 <form [formGroup]="registerForm">
   <!-- Name -->
@@ -59,7 +62,9 @@
   </div>
   <button class="block w-full bg-indigo-400 text-white py-1.5 px-3 rounded transition
                 hover:bg-indigo-500"
-          type="submit">
+          type="submit"
+          (click)="register()"
+  >
     Submit
   </button>
 </form>
