@@ -2,7 +2,6 @@ import {AbstractControl, ValidationErrors, ValidatorFn} from "@angular/forms";
 
 export class RegisterValidator {
 
-  // TODO: Doesn't Work
   static match(controlName: string, matchingControlName: string): ValidatorFn {
     return (group: AbstractControl): ValidationErrors | null => {
       const control = group.get(controlName)
