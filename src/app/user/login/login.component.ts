@@ -8,8 +8,8 @@ import {AngularFireAuth} from "@angular/fire/compat/auth";
 })
 export class LoginComponent {
   credentials = {
-    email: '',
-    password: ''
+    email: 'moe_zaky@gmail.com',
+    password: 'Mm123456'
   }
 
   showAlert = false;
