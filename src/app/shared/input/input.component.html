@@ -48,5 +48,15 @@
     The Value you entered is not valid.
   </p>
 
+  <p *ngIf="control.errors?.['noMatch']"
+     class="text-red-400 text-xs italic">
+    Passwords do not match.
+  </p>
+
+  <p *ngIf="control.errors?.['emailTaken']"
+     class="text-red-400 text-xs italic">
+    This email is already taken.
+  </p>
+
 
 </ng-container>

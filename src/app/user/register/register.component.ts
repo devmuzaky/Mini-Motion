@@ -1,9 +1,9 @@
 import {Component, Inject} from '@angular/core';
-import {AngularFireAuth} from "@angular/fire/compat/auth";
-import {AngularFirestore} from "@angular/fire/compat/firestore";
-import {FormBuilder, Validators} from "@angular/forms";
+import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import IUser from "../models/user";
 import {AuthService} from "../services/auth.service";
+import {EmailTaken} from "../Validitors/email-taken";
+import {RegisterValidator} from "../Validitors/register-validator";
 
 @Component({
   selector: 'app-register', templateUrl: './register.component.html', styleUrls: ['./register.component.scss']
@@ -16,26 +16,58 @@ export class RegisterComponent {
 
   inSubmission = false;
 
-  constructor(
-    private formBuilder: FormBuilder,
-    private auth: AuthService
-  ) {
+  constructor(private formBuilder: FormBuilder, private auth: AuthService, private emailTaken: EmailTaken) {
   }
 
-  registerForm = this.formBuilder.group({
-    name: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(20),]],
-    email: ['', [Validators.required, Validators.email]],
-    age: ['', [Validators.required, Validators.min(18)]],
-    password: ['', [Validators.required, Validators.minLength(8),
-      Validators.maxLength(20)
-    ]],
-    confirmPassword: ['', [Validators.required,
+  // registerForm = this.formBuilder.group({
+  //   name: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(20),]],
+  //   email: ['', [Validators.required, Validators.email]],
+  //   age: ['', [Validators.required, Validators.min(18)]],
+  //   password: ['', [Validators.required, Validators.minLength(8), Validators.maxLength(20)]],
+  //   confirmPassword: ['', [Validators.required]],
+  //   phoneNumber: ['', [Validators.required]]
+  // },
+  //   {
+  //     validator: RegisterValidator.match('password', 'confirmPassword')
+  //   }
+  //   );
 
-    ]],
-    phoneNumber: ['', [Validators.required]],
 
-  });
+  name = new FormControl('', [
+    Validators.required,
+    Validators.minLength(3)
+  ])
+  email = new FormControl('', [
+    Validators.required,
+    Validators.email
+  ], [this.emailTaken.validate])
+  age = new FormControl<number | null>(null, [
+    Validators.required,
+    Validators.min(18),
+    Validators.max(120)
+  ])
+  password = new  FormControl('', [
+    Validators.required,
+    Validators.pattern(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/gm)
+  ])
+  confirm_password = new FormControl('', [
+    Validators.required
+  ])
+  phoneNumber = new FormControl('', [
+    Validators.required,
+    Validators.minLength(13),
+    Validators.maxLength(13)
+  ])
 
+
+  registerForm = new FormGroup({
+    name: this.name,
+    email: this.email,
+    age: this.age,
+    password: this.password,
+    confirm_password: this.confirm_password,
+    phoneNumber: this.phoneNumber
+  }, [RegisterValidator.match('password', 'confirm_password')])
 
   async register() {
     this.showAlert = true;
@@ -57,5 +89,6 @@ export class RegisterComponent {
     this.alertColor = 'green';
   }
 
-
 }
+
+
