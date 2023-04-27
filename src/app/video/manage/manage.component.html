@@ -4,7 +4,8 @@
     <a routerLink="/upload" class="bg-indigo-400 text-white py-4 px-10 text-xl">Upload Videos</a>
 
     <!-- Sort Videos -->
-    <select class="text-black px-8 text-xl outline-none appearance-none">
+    <select (change)="sortVideos($event)"
+      class="text-black px-8 text-xl outline-none appearance-none">
       <option value="1">Recent Uploads</option>
       <option value="2">Oldest Uploads</option>
     </select>
