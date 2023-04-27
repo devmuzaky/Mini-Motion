@@ -11,6 +11,7 @@ import {UserModule} from "./user/user.module";
 import {NavComponent} from './nav/nav.component';
 import { HomeComponent } from './home/home.component';
 import { AboutComponent } from './about/about.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import { AboutComponent } from './about/about.component';
     AppComponent,
     NavComponent,
     HomeComponent,
-    AboutComponent
+    AboutComponent,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,

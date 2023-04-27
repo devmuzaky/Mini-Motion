@@ -2,7 +2,7 @@
 <header class="bg-secondary" id="header">
   <nav class="container mx-auto flex justify-start items-center py-8 px-4">
     <!-- App Name -->
-    <a class="text-3xl text-indigo-400 font-bold uppercase mr-4" href="index.html">Clips</a>
+    <a class="text-3xl text-indigo-400 font-bold uppercase mr-4" routerLink="/">Clips</a>
 
     <div class="flex flex-grow items-center">
       <!-- Primary Navigation -->
@@ -14,13 +14,13 @@
 
         <ng-template #authLinks>
           <li>
-            <a class="px-2" href="#">Manage</a>
+            <a class="px-2" routerLink="/manage">Manage</a>
           </li>
           <li>
-            <a class="px-2" href="#">Upload</a>
+            <a class="px-2" routerLink="/upload">Upload</a>
           </li>
           <li>
-            <a class="px-2" href="about.html">About</a>
+            <a class="px-2" routerLink="/about">About</a>
           </li>
 
           <li>
