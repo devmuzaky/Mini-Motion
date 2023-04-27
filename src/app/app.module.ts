@@ -13,6 +13,7 @@ import { HomeComponent } from './home/home.component';
 import { AboutComponent } from './about/about.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import {VideoModule} from "./video/video.module";
+import { ClipComponent } from './clip/clip.component';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import {VideoModule} from "./video/video.module";
     NavComponent,
     HomeComponent,
     AboutComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    ClipComponent
   ],
   imports: [
     BrowserModule,
