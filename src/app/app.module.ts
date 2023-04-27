@@ -9,11 +9,11 @@ import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {UserModule} from "./user/user.module";
 import {NavComponent} from './nav/nav.component';
-import { HomeComponent } from './home/home.component';
-import { AboutComponent } from './about/about.component';
-import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import {HomeComponent} from './home/home.component';
+import {AboutComponent} from './about/about.component';
+import {PageNotFoundComponent} from './page-not-found/page-not-found.component';
 import {VideoModule} from "./video/video.module";
-import { ClipComponent } from './clip/clip.component';
+import {ClipComponent} from './clip/clip.component';
 
 
 @NgModule({
@@ -27,12 +27,12 @@ import { ClipComponent } from './clip/clip.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
     UserModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
     AngularFirestoreModule,
-    VideoModule
+    VideoModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]

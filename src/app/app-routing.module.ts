@@ -17,6 +17,10 @@ const routes: Routes = [
   {
     path: 'clip/:id',
     component: ClipComponent
+  },
+  {
+    path: '**',
+    component: PageNotFoundComponent
   }
 ];
 
