@@ -3,23 +3,31 @@
   <div class="rounded relative flex flex-col">
     <div class="font-bold mb-6">Upload Video</div>
 
-    <!-- Upload Dropbox -->
-    <div (dragend)="isDragOver = false" (dragenter)="isDragOver = true"
-         (dragleave)="isDragOver = false"
-         (dragover)="isDragOver = true"
-         (drop)="storeFile($event)"
-         (mouseleave)="isDragOver = false"
-         *ngIf="!nextStep; else uploadFormContainer"
-         [ngClass]="{
+    <ng-container *ngIf="!nextStep; else uploadFormContainer">
+      <!-- Upload Dropbox -->
+      <div (dragend)="isDragOver = false" (dragenter)="isDragOver = true"
+           (dragleave)="isDragOver = false"
+           (dragover)="isDragOver = true"
+           (drop)="storeFile($event)"
+           (mouseleave)="isDragOver = false"
+           [ngClass]="{
           'bg-indigo-400 border-indigo-400 border-solid': isDragOver,
           }"
 
-         appEventBlocker
-         class="w-full px-10 py-40 rounded text-center cursor-pointer border border-dashed
+           appEventBlocker
+           class="w-full px-10 py-40 rounded text-center cursor-pointer border border-dashed
           border-gray-400 transition duration-500 hover:text-white
           hover:bg-indigo-400 hover:border-indigo-400 hover:border-solid text-xl">
-      <h5>Drop your file here (mp4 only!)</h5>
-    </div>
+        <h5>Drop your file here (mp4 only!)</h5>
+      </div>
+
+      <!-- Upload Button -->
+      <div class="mt-4 text-left">
+        <input (change)="storeFile($event)"  type="file">
+      </div>
+
+    </ng-container>
+
 
     <!-- Video Editor -->
     <ng-template #uploadFormContainer>

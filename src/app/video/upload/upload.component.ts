@@ -27,13 +27,14 @@ export class UploadComponent {
   showPercentage = false;
 
   user: firebase.User | null = null;
+  title = new FormControl('', {
+    validators: [Validators.required, Validators.minLength(3)], nonNullable: true
+  });
+  uploadForm = new FormGroup({
+    title: this.title
+  })
 
-
-  constructor(
-    private storage: AngularFireStorage,
-    private auth: AngularFireAuth,
-    private clipService: ClipService
-  ) {
+  constructor(private storage: AngularFireStorage, private auth: AngularFireAuth, private clipService: ClipService) {
     this.auth.user.subscribe({
       next: (user) => {
         this.user = user;
@@ -41,16 +42,11 @@ export class UploadComponent {
     })
   }
 
-
-  title = new FormControl('', {
-    validators: [Validators.required, Validators.minLength(3)], nonNullable: true
-  });
-
-  uploadForm = new FormGroup({
-    title: this.title
-  })
-
   uploadFile() {
+
+    this.uploadForm.disable() // disable the form while uploading the file
+
+
     this.inSubmission = true;
     this.showAlert = true;
     this.alertColor = 'blue';
@@ -67,8 +63,7 @@ export class UploadComponent {
       this.percentage = percentage as number / 100;
     });
 
-    task.snapshotChanges().pipe(
-      last(), // emit the last event in the stream
+    task.snapshotChanges().pipe(last(), // emit the last event in the stream
       switchMap(() => ref.getDownloadURL()) // get the download url of the file
     ).subscribe({
       next: (url) => {
@@ -81,13 +76,15 @@ export class UploadComponent {
           url
         }
 
-        this.clipService.createClip(clip);
+        this.clipService.createClip(clip); // create the clip in the database after the file is uploaded
 
         this.alertColor = 'green';
         this.alertMessage = 'Success! Your clip is now ready to share with the world.';
         this.showPercentage = false;
-      },
-      error: () => {
+      }, error: () => {
+
+        this.uploadForm.enable(); // re-enable the form after the upload is complete
+
         this.alertColor = 'red';
         this.alertMessage = 'Oops! Something went wrong. Please try again.';
         this.inSubmission = true;
@@ -97,10 +94,11 @@ export class UploadComponent {
 
   }
 
-
-  storeFile($event: DragEvent) {
+  storeFile($event: Event) {
     this.isDragOver = false;
-    this.file = ($event as DragEvent).dataTransfer?.files.item(0) ?? null;
+    this.file = ($event as DragEvent).dataTransfer ? ($event as DragEvent).dataTransfer?.files.item(0) ?? null :
+      ($event.target as HTMLInputElement).files?.item(0) ?? null;
+
     if (!this.file || this.file.type !== 'video/mp4') {
       this.file = null;
       return;
