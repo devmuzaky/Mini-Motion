@@ -2,6 +2,7 @@ import {NgModule} from '@angular/core';
 import {AngularFireModule} from "@angular/fire/compat";
 import {AngularFireAuthModule} from "@angular/fire/compat/auth";
 import {AngularFirestoreModule} from "@angular/fire/compat/firestore";
+import {AngularFireStorageModule} from "@angular/fire/compat/storage";
 import {BrowserModule} from '@angular/platform-browser';
 import {environment} from "../environments/environment";
 
@@ -14,6 +15,7 @@ import {AboutComponent} from './about/about.component';
 import {PageNotFoundComponent} from './page-not-found/page-not-found.component';
 import {VideoModule} from "./video/video.module";
 import {ClipComponent} from './clip/clip.component';
+
 
 
 @NgModule({
@@ -32,6 +34,7 @@ import {ClipComponent} from './clip/clip.component';
     AngularFireAuthModule,
     AngularFirestoreModule,
     VideoModule,
+    AngularFireStorageModule,
     AppRoutingModule
   ],
   providers: [],

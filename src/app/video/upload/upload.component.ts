@@ -1,10 +1,14 @@
 import {Component} from '@angular/core';
-import {FormBuilder} from "@angular/forms";
+import {AngularFireAuth} from "@angular/fire/compat/auth";
+import {AngularFireStorage} from "@angular/fire/compat/storage";
+import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {last, switchMap} from "rxjs";
+import {v4 as uuid} from 'uuid';
+
+import firebase from "firebase/compat/app";
 
 @Component({
-  selector: 'app-upload',
-  templateUrl: './upload.component.html',
-  styleUrls: ['./upload.component.scss']
+  selector: 'app-upload', templateUrl: './upload.component.html', styleUrls: ['./upload.component.scss']
 })
 export class UploadComponent {
 
@@ -12,9 +16,85 @@ export class UploadComponent {
   file: File | null = null;
   nextStep = false;
 
-  constructor(private fb: FormBuilder) {
+  showAlert = false;
+  alertColor = 'blue';
+  alertMessage = 'Please wait! Your video is being uploaded.';
+  inSubmission = false;
+
+  percentage = 0;
+
+  showPercentage = false;
+
+  user: firebase.User | null = null;
+
+
+  constructor(
+    private storage: AngularFireStorage,
+    private auth: AngularFireAuth
+  ) {
+    this.auth.user.subscribe({
+      next: (user) => {
+        this.user = user;
+      }
+    })
   }
 
+
+  title = new FormControl('', {
+    validators: [Validators.required, Validators.minLength(3)], nonNullable: true
+  });
+
+  uploadForm = new FormGroup({
+    title: this.title
+  })
+
+  uploadFile() {
+    this.inSubmission = true;
+    this.showAlert = true;
+    this.alertColor = 'blue';
+    this.alertMessage = 'Please wait! Your video is being uploaded.';
+    this.showPercentage = true;
+
+    const clipFileName = uuid();
+    const clipPath = `clips/${clipFileName}.mp4`;
+
+    const task = this.storage.upload(clipPath, this.file)
+    const ref = this.storage.ref(clipPath);
+
+    task.percentageChanges().subscribe((percentage) => {
+      this.percentage = percentage as number / 100;
+    });
+
+    task.snapshotChanges().pipe(
+      last(), // emit the last event in the stream
+      switchMap(() => ref.getDownloadURL()) // get the download url of the file
+    ).subscribe({
+      next: (url) => {
+
+        const clip ={
+          uid: this.user?.uid,
+          displayName: this.user?.displayName,
+          title: this.title.value,
+          fileName: `${clipFileName}.mp4`,
+          url
+        }
+
+        console.log(clip);
+
+
+        this.alertColor = 'green';
+        this.alertMessage = 'Success! Your clip is now ready to share with the world.';
+        this.showPercentage = false;
+      },
+      error: () => {
+        this.alertColor = 'red';
+        this.alertMessage = 'Oops! Something went wrong. Please try again.';
+        this.inSubmission = true;
+        this.showPercentage = false;
+      }
+    });
+
+  }
 
 
   storeFile($event: DragEvent) {
@@ -25,7 +105,7 @@ export class UploadComponent {
       return;
     }
 
-    console.log(this.file)
+    this.title.setValue(this.file.name.replace('.mp4', ''));
 
     this.nextStep = true;
   }
