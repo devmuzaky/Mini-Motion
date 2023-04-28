@@ -1,6 +1,6 @@
-import {Component} from '@angular/core';
+import {Component, OnDestroy} from '@angular/core';
 import {AngularFireAuth} from "@angular/fire/compat/auth";
-import {AngularFireStorage} from "@angular/fire/compat/storage";
+import {AngularFireStorage, AngularFireUploadTask} from "@angular/fire/compat/storage";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {last, switchMap} from "rxjs";
 import {v4 as uuid} from 'uuid';
@@ -11,7 +11,7 @@ import {ClipService} from "../../services/clip/clip.service";
 @Component({
   selector: 'app-upload', templateUrl: './upload.component.html', styleUrls: ['./upload.component.scss']
 })
-export class UploadComponent {
+export class UploadComponent implements OnDestroy{
 
   isDragOver = false;
   file: File | null = null;
@@ -27,6 +27,10 @@ export class UploadComponent {
   showPercentage = false;
 
   user: firebase.User | null = null;
+
+  task?: AngularFireUploadTask
+
+
   title = new FormControl('', {
     validators: [Validators.required, Validators.minLength(3)], nonNullable: true
   });
@@ -40,6 +44,9 @@ export class UploadComponent {
         this.user = user;
       }
     })
+  }
+  ngOnDestroy() {
+    this.task?.cancel(); // cancel the upload if the user leaves the page
   }
 
   uploadFile() {
@@ -56,14 +63,14 @@ export class UploadComponent {
     const clipFileName = uuid();
     const clipPath = `clips/${clipFileName}.mp4`;
 
-    const task = this.storage.upload(clipPath, this.file)
+    this.task = this.storage.upload(clipPath, this.file)
     const ref = this.storage.ref(clipPath);
 
-    task.percentageChanges().subscribe((percentage) => {
+    this.task.percentageChanges().subscribe((percentage) => {
       this.percentage = percentage as number / 100;
     });
 
-    task.snapshotChanges().pipe(last(), // emit the last event in the stream
+    this.task.snapshotChanges().pipe(last(), // emit the last event in the stream
       switchMap(() => ref.getDownloadURL()) // get the download url of the file
     ).subscribe({
       next: (url) => {
