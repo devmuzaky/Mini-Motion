@@ -6,6 +6,7 @@ import {last, switchMap} from "rxjs";
 import {v4 as uuid} from 'uuid';
 
 import firebase from "firebase/compat/app";
+import {ClipService} from "../../services/clip/clip.service";
 
 @Component({
   selector: 'app-upload', templateUrl: './upload.component.html', styleUrls: ['./upload.component.scss']
@@ -30,7 +31,8 @@ export class UploadComponent {
 
   constructor(
     private storage: AngularFireStorage,
-    private auth: AngularFireAuth
+    private auth: AngularFireAuth,
+    private clipService: ClipService
   ) {
     this.auth.user.subscribe({
       next: (user) => {
@@ -71,16 +73,15 @@ export class UploadComponent {
     ).subscribe({
       next: (url) => {
 
-        const clip ={
-          uid: this.user?.uid,
-          displayName: this.user?.displayName,
+        const clip = {
+          uid: this.user?.uid as string,
+          displayName: this.user?.displayName as string,
           title: this.title.value,
           fileName: `${clipFileName}.mp4`,
           url
         }
 
-        console.log(clip);
-
+        this.clipService.createClip(clip);
 
         this.alertColor = 'green';
         this.alertMessage = 'Success! Your clip is now ready to share with the world.';
