@@ -2,6 +2,7 @@ import {Component, OnDestroy} from '@angular/core';
 import {AngularFireAuth} from "@angular/fire/compat/auth";
 import {AngularFireStorage, AngularFireUploadTask} from "@angular/fire/compat/storage";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {Router} from "@angular/router";
 import {last, switchMap} from "rxjs";
 import {v4 as uuid} from 'uuid';
 
@@ -11,7 +12,7 @@ import {ClipService} from "../../services/clip/clip.service";
 @Component({
   selector: 'app-upload', templateUrl: './upload.component.html', styleUrls: ['./upload.component.scss']
 })
-export class UploadComponent implements OnDestroy{
+export class UploadComponent implements OnDestroy {
 
   isDragOver = false;
   file: File | null = null;
@@ -38,13 +39,19 @@ export class UploadComponent implements OnDestroy{
     title: this.title
   })
 
-  constructor(private storage: AngularFireStorage, private auth: AngularFireAuth, private clipService: ClipService) {
+  constructor(
+    private storage: AngularFireStorage,
+    private auth: AngularFireAuth,
+    private clipService: ClipService,
+    private router: Router
+  ) {
     this.auth.user.subscribe({
       next: (user) => {
         this.user = user;
       }
     })
   }
+
   ngOnDestroy() {
     this.task?.cancel(); // cancel the upload if the user leaves the page
   }
@@ -73,7 +80,7 @@ export class UploadComponent implements OnDestroy{
     this.task.snapshotChanges().pipe(last(), // emit the last event in the stream
       switchMap(() => ref.getDownloadURL()) // get the download url of the file
     ).subscribe({
-      next: (url) => {
+      next: async (url) => {
 
         const clip = {
           uid: this.user?.uid as string,
@@ -82,20 +89,24 @@ export class UploadComponent implements OnDestroy{
           fileName: `${clipFileName}.mp4`,
           url
         }
-
-        this.clipService.createClip(clip); // create the clip in the database after the file is uploaded
+        const clipDocRef = await this.clipService.createClip(clip); // create the clip in the database and get the reference
 
         this.alertColor = 'green';
         this.alertMessage = 'Success! Your clip is now ready to share with the world.';
         this.showPercentage = false;
+
+        setTimeout(() => {
+          this.router.navigate(['/clip', clipDocRef.id]); // navigate to the clip page after 1 second of showing the success message
+        }, 1000);
+
       }, error: () => {
 
         this.uploadForm.enable(); // re-enable the form after the upload is complete
 
-        this.alertColor = 'red';
+        this.alertColor = 'red'; // show an error message
         this.alertMessage = 'Oops! Something went wrong. Please try again.';
-        this.inSubmission = true;
-        this.showPercentage = false;
+        this.inSubmission = true; // re-enable the form after the upload is complete
+        this.showPercentage = false; // re-enable the form after the upload is complete
       }
     });
 
