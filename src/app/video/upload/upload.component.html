@@ -4,7 +4,16 @@
     <div class="font-bold mb-6">Upload Video</div>
 
     <!-- Upload Dropbox -->
-    <div
+    <div *ngIf="!nextStep; else uploadFormContainer" appEventBlocker
+         (dragend)="isDragOver = false"
+          (dragover)="isDragOver = true"
+         (dragenter)="isDragOver = true"
+          (dragleave)="isDragOver = false"
+         (mouseleave)="isDragOver = false"
+          (drop)="storeFile($event)"
+          [ngClass]="{
+          'bg-indigo-400 border-indigo-400 border-solid': isDragOver,
+          }"
       class="w-full px-10 py-40 rounded text-center cursor-pointer border border-dashed
           border-gray-400 transition duration-500 hover:text-white
           hover:bg-indigo-400 hover:border-indigo-400 hover:border-solid text-xl">
@@ -12,7 +21,7 @@
     </div>
 
     <!-- Video Editor -->
-    <div>
+    <ng-template #uploadFormContainer >
 
       <!-- Form -->
       <form>
@@ -43,6 +52,6 @@
           </button>
         </div>
       </form>
-    </div>
+    </ng-template>
   </div>
 </section>
