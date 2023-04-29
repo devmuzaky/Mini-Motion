@@ -7,7 +7,7 @@ import {
   QuerySnapshot
 } from "@angular/fire/compat/firestore";
 import {AngularFireStorage} from "@angular/fire/compat/storage";
-import {map, of, switchMap} from "rxjs";
+import {BehaviorSubject, combineLatest, map, of, switchMap} from "rxjs";
 import IClip from "../../models/iclip";
 
 @Injectable({
@@ -30,18 +30,27 @@ export class ClipService {
     return this.clipsCollection.add(clip); // add the clip to the collection and return the reference
   }
 
-  getUserClips() {
-    return this.auth.user.pipe(
-      switchMap((user) => {
+  getUserClips(sort$: BehaviorSubject<string>) {
+    return combineLatest([
+      this.auth.user,
+      sort$
+    ]).pipe(
+      switchMap(values => {
+
+        const [user, sort] = values;
+
         if (!user) {
           return of([]) // return an empty array if the user is not logged in
         }
-        const query = this.clipsCollection.ref.where('uid', '==', user.uid); // get the clips where the uid is equal to the user's uid
+        const query = this.clipsCollection.ref.where(
+          'uid', '==', user.uid
+        ).orderBy(
+          'timestamp',
+          sort === '1' ? 'desc' : 'asc'
+        ); // get the clips where the uid is equal to the user's uid
         return query.get(); // return the query results as an observable (this is an observable of a firebase query snapshot)
       }),
-      map((snapshot) => {
-        return (snapshot as QuerySnapshot<IClip>).docs
-      })
+      map(snapshot => (snapshot as QuerySnapshot<IClip>).docs)
     )
   }
 

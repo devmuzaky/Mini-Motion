@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {update} from "@angular/fire/database";
 import {ActivatedRoute, Params, Router} from "@angular/router";
 import firebase from "firebase/compat";
+import {BehaviorSubject} from "rxjs";
 import IClip from "../../models/iclip";
 import {ClipService} from "../../services/clip/clip.service";
 import {ModalService} from "../../services/modal/modal.service";
@@ -16,6 +17,8 @@ export class ManageComponent implements OnInit {
 
   videoOrder = '1';
 
+  sort$: BehaviorSubject<string>;
+
   clips: IClip[] = []; // this is an array of clips that we will display in the template
 
   activeClip: IClip | null = null;
@@ -26,15 +29,16 @@ export class ManageComponent implements OnInit {
     private clipService: ClipService,
     private modal: ModalService
   ) {
+    this.sort$ = new BehaviorSubject<string>(this.videoOrder);
   }
 
   ngOnInit(): void {
     this.route.queryParams.subscribe((params: Params) => {
-      // this.videoOrder = params['sort'] === '2' ? '1' : '0';
       this.videoOrder = params['sort'] === '2' ? params['sort'] : '1';
+      this.sort$.next(this.videoOrder);
     })
 
-    this.clipService.getUserClips().subscribe(docs => {
+    this.clipService.getUserClips(this.sort$).subscribe(docs => {
       this.clips = [];
       docs.forEach(doc => {
         this.clips.push({
