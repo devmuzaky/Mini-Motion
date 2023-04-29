@@ -16,7 +16,8 @@
 <div class="container mx-auto my-8">
   <!-- Video List -->
   <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
-    <div class="mt-6 rounded-tl-2xl rounded-br-2xl shadow-xl bg-secondary flex flex-col justify-start">
+    <div *ngFor="let clip of clips"
+         class="mt-6 rounded-tl-2xl rounded-br-2xl shadow-xl bg-secondary flex flex-col justify-start">
 
       <!-- Image -->
       <a href="#">
@@ -28,7 +29,7 @@
 
         <!-- Link -->
         <a href="#" class="font-bold mb-2">
-          Game Highlighting Clip
+          {{clip.title}}
         </a>
         <a href="#" class="bg-gray-400 text-white px-2 py-1 ml-2 text-sm rounded">
           Copy Link
@@ -47,161 +48,7 @@
       </div>
 
     </div>
-    <div class="mt-6 rounded-tl-2xl rounded-br-2xl shadow-xl bg-secondary flex flex-col justify-start">
 
-      <!-- Image -->
-      <a href="#">
-        <img class="card-img-top rounded-tl-2xl w-full" src="../src/assets/img/1.jpg">
-      </a>
-
-      <!-- Body -->
-      <div class="p-6 text-2xl">
-
-        <!-- Link -->
-        <a href="#" class="font-bold mb-2">
-          Game Highlighting Clip
-        </a>
-        <a href="#" class="bg-gray-400 text-white px-2 py-1 ml-2 text-sm rounded">
-          Copy Link
-        </a>
-
-      </div>
-
-      <!-- Actions -->
-      <div class="flex text-center text-2xl bg-gray-800 p-2 mt-auto">
-        <a href="#" class="flex-1 p-2 border-right border-r-2 border-gray-700 transition hover:text-indigo-400">
-          <span class="material-icons text-base">build</span>
-        </a>
-        <a href="#" class="flex-1 p-2 rounded-br-2xl transition hover:text-indigo-400">
-          <span class="material-icons text-base">delete</span>
-        </a>
-      </div>
-
-    </div>
-    <div class="mt-6 rounded-tl-2xl rounded-br-2xl shadow-xl bg-secondary flex flex-col justify-start">
-
-      <!-- Image -->
-      <a href="#">
-        <img class="card-img-top rounded-tl-2xl w-full" src="../src/assets/img/1.jpg">
-      </a>
-
-      <!-- Body -->
-      <div class="p-6 text-2xl">
-
-        <!-- Link -->
-        <a href="#" class="font-bold mb-2">
-          Game Highlighting Clip
-        </a>
-        <a href="#" class="bg-gray-400 text-white px-2 py-1 ml-2 text-sm rounded">
-          Copy Link
-        </a>
-
-      </div>
-
-      <!-- Actions -->
-      <div class="flex text-center text-2xl bg-gray-800 p-2 mt-auto">
-        <a href="#" class="flex-1 p-2 border-right border-r-2 border-gray-700 transition hover:text-indigo-400">
-          <span class="material-icons text-base">build</span>
-        </a>
-        <a href="#" class="flex-1 p-2 rounded-br-2xl transition hover:text-indigo-400">
-          <span class="material-icons text-base">delete</span>
-        </a>
-      </div>
-
-    </div>
-    <div class="mt-6 rounded-tl-2xl rounded-br-2xl shadow-xl bg-secondary flex flex-col justify-start">
-
-      <!-- Image -->
-      <a href="#">
-        <img class="card-img-top rounded-tl-2xl w-full" src="../src/assets/img/1.jpg">
-      </a>
-
-      <!-- Body -->
-      <div class="p-6 text-2xl">
-
-        <!-- Link -->
-        <a href="#" class="font-bold mb-2">
-          Game Highlighting Clip
-        </a>
-        <a href="#" class="bg-gray-400 text-white px-2 py-1 ml-2 text-sm rounded">
-          Copy Link
-        </a>
-
-      </div>
-
-      <!-- Actions -->
-      <div class="flex text-center text-2xl bg-gray-800 p-2 mt-auto">
-        <a href="#" class="flex-1 p-2 border-right border-r-2 border-gray-700 transition hover:text-indigo-400">
-          <span class="material-icons text-base">build</span>
-        </a>
-        <a href="#" class="flex-1 p-2 rounded-br-2xl transition hover:text-indigo-400">
-          <span class="material-icons text-base">delete</span>
-        </a>
-      </div>
-
-    </div>
-    <div class="mt-6 rounded-tl-2xl rounded-br-2xl shadow-xl bg-secondary flex flex-col justify-start">
-
-      <!-- Image -->
-      <a href="#">
-        <img class="card-img-top rounded-tl-2xl w-full" src="../src/assets/img/1.jpg">
-      </a>
-
-      <!-- Body -->
-      <div class="p-6 text-2xl">
-
-        <!-- Link -->
-        <a href="#" class="font-bold mb-2">
-          Game Highlighting Clip
-        </a>
-        <a href="#" class="bg-gray-400 text-white px-2 py-1 ml-2 text-sm rounded">
-          Copy Link
-        </a>
-
-      </div>
-
-      <!-- Actions -->
-      <div class="flex text-center text-2xl bg-gray-800 p-2 mt-auto">
-        <a href="#" class="flex-1 p-2 border-right border-r-2 border-gray-700 transition hover:text-indigo-400">
-          <span class="material-icons text-base">build</span>
-        </a>
-        <a href="#" class="flex-1 p-2 rounded-br-2xl transition hover:text-indigo-400">
-          <span class="material-icons text-base">delete</span>
-        </a>
-      </div>
-
-    </div>
-    <div class="mt-6 rounded-tl-2xl rounded-br-2xl shadow-xl bg-secondary flex flex-col justify-start">
-
-      <!-- Image -->
-      <a href="#">
-        <img class="card-img-top rounded-tl-2xl w-full" src="../src/assets/img/1.jpg">
-      </a>
-
-      <!-- Body -->
-      <div class="p-6 text-2xl">
-
-        <!-- Link -->
-        <a href="#" class="font-bold mb-2">
-          Game Highlighting Clip
-        </a>
-        <a href="#" class="bg-gray-400 text-white px-2 py-1 ml-2 text-sm rounded">
-          Copy Link
-        </a>
-
-      </div>
-
-      <!-- Actions -->
-      <div class="flex text-center text-2xl bg-gray-800 p-2 mt-auto">
-        <a href="#" class="flex-1 p-2 border-right border-r-2 border-gray-700 transition hover:text-indigo-400">
-          <span class="material-icons text-base">build</span>
-        </a>
-        <a href="#" class="flex-1 p-2 rounded-br-2xl transition hover:text-indigo-400">
-          <span class="material-icons text-base">delete</span>
-        </a>
-      </div>
-
-    </div>
   </div>
 </div>
 
