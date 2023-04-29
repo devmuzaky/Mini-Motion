@@ -3,6 +3,7 @@ import {ActivatedRoute, Params, Router} from "@angular/router";
 import firebase from "firebase/compat";
 import IClip from "../../models/iclip";
 import {ClipService} from "../../services/clip/clip.service";
+import {ModalService} from "../../services/modal/modal.service";
 import QueryDocumentSnapshot = firebase.firestore.QueryDocumentSnapshot;
 
 @Component({
@@ -16,10 +17,13 @@ export class ManageComponent implements OnInit {
 
   clips: IClip[] = []; // this is an array of clips that we will display in the template
 
+  activeClip: IClip | null = null;
+
   constructor(
     private router: Router,
     private route: ActivatedRoute,
-    private clipService: ClipService
+    private clipService: ClipService,
+    private modal: ModalService
   ) {
   }
 
@@ -53,5 +57,13 @@ export class ManageComponent implements OnInit {
     })
 
 
+  }
+
+  openModal($event: MouseEvent, clip: IClip) {
+    $event.preventDefault();
+
+    this.activeClip = clip;
+
+    this.modal.toggleModal('editClip');
   }
 }
