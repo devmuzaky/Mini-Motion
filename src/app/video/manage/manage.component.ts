@@ -1,4 +1,5 @@
 import {Component, OnInit} from '@angular/core';
+import {update} from "@angular/fire/database";
 import {ActivatedRoute, Params, Router} from "@angular/router";
 import firebase from "firebase/compat";
 import IClip from "../../models/iclip";
@@ -66,4 +67,16 @@ export class ManageComponent implements OnInit {
 
     this.modal.toggleModal('editClip');
   }
+
+  update($event: IClip) {
+    this.clips.forEach(
+      (clip, index) => {
+        if (clip.docID === $event.docID) {
+          this.clips[index].title = $event.title;
+        }
+      }
+    )
+  }
+
+
 }

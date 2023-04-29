@@ -2,19 +2,26 @@
 <app-modal modalID="editClip">
   <p class="text-2xl font-bold">Edit Video</p>
 
+  <app-alert *ngIf="showAlert" [color]="alertColor">
+    <p>{{alertMessage}}</p>
+  </app-alert>
+
   <!-- Form -->
-  <form>
+  <form (ngSubmit)="submit()" [formGroup]="editForm">
     <!-- Title -->
     <div class="mt-4">
       <label class="block text-xl mb-4">Title</label>
-      <input class="block w-full py-1.5 px-3 text-gray-200 border border-gray-400 transition
-        duration-500 focus:outline-none rounded bg-transparent focus:border-indigo-400" placeholder="Enter Title">
+      <app-input [control]="title" [placeholder]="'Enter a title'"></app-input>
     </div>
 
     <div class="mt-4 text-right">
-      <button
-        class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm rounded-md text-white bg-indigo-600 focus:outline-none"
-        type="submit">
+      <button [disabled]="inSubmission"
+              [ngClass]="{
+                  'opacity-50 cursor-not-allowed': inSubmission,
+                  'hover:bg-indigo-700': !inSubmission
+                  }"
+              class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none"
+              type="submit">
         Update
       </button>
     </div>

@@ -1,13 +1,13 @@
 <!-- Top Bar -->
 <section class="container mx-auto my-8 bg-secondary p-6">
   <div class="rounded relative flex justify-between">
-    <a routerLink="/upload" class="bg-indigo-400 text-white py-4 px-10 text-xl">Upload Videos</a>
+    <a class="bg-indigo-400 text-white py-4 px-10 text-xl" routerLink="/upload">Upload Videos</a>
 
     <!-- Sort Videos -->
     <select (change)="sortVideos($event)"
-      class="text-black px-8 text-xl outline-none appearance-none">
-      <option value="1" [selected]="videoOrder === '1'" >Recent Uploads</option>
-      <option value="2" [selected]="videoOrder === '2'">Oldest Uploads</option>
+            class="text-black px-8 text-xl outline-none appearance-none">
+      <option [selected]="videoOrder === '1'" value="1">Recent Uploads</option>
+      <option [selected]="videoOrder === '2'" value="2">Oldest Uploads</option>
     </select>
   </div>
 </section>
@@ -21,17 +21,17 @@
 
       <!-- Image -->
       <a href="#">
-        <img class="card-img-top rounded-tl-2xl w-full" src="../src/assets/img/1.jpg">
+        <img class="card-img-top rounded-tl-2xl w-full" src="../src/assets/img/1.jpg" alt="">
       </a>
 
       <!-- Body -->
       <div class="p-6 text-2xl">
 
         <!-- Link -->
-        <a href="#" class="font-bold mb-2">
+        <a class="font-bold mb-2" href="#">
           {{clip.title}}
         </a>
-        <a href="#" class="bg-gray-400 text-white px-2 py-1 ml-2 text-sm rounded">
+        <a class="bg-gray-400 text-white px-2 py-1 ml-2 text-sm rounded" href="#">
           Copy Link
         </a>
 
@@ -39,11 +39,11 @@
 
       <!-- Actions -->
       <div class="flex text-center text-2xl bg-gray-800 p-2 mt-auto">
-        <a  (click)="openModal($event, clip)"
-          href="#" class="flex-1 p-2 border-right border-r-2 border-gray-700 transition hover:text-indigo-400">
+        <a (click)="openModal($event, clip)"
+           class="flex-1 p-2 border-right border-r-2 border-gray-700 transition hover:text-indigo-400" href="#">
           <span class="material-icons text-base">build</span>
         </a>
-        <a href="#" class="flex-1 p-2 rounded-br-2xl transition hover:text-indigo-400">
+        <a class="flex-1 p-2 rounded-br-2xl transition hover:text-indigo-400" href="#">
           <span class="material-icons text-base">delete</span>
         </a>
       </div>
@@ -54,4 +54,5 @@
 </div>
 
 
-<app-edit [activeClip]="activeClip" ></app-edit>
+<app-edit [activeClip]="activeClip" (update)="update($event)"
+></app-edit>
