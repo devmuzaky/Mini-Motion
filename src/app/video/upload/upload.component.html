@@ -30,6 +30,11 @@
               border-gray-400 transition duration-500 hover:text-white
               hover:bg-indigo-400 hover:border-indigo-400 hover:border-solid text-xl">
           <h5>Drop your file here (mp4 only!)</h5>
+
+          <span *ngIf="ffmpegService.isRunning"
+            class="material-icons text-center text-6xl p-8 animate-spin">
+            autorenew
+          </span>
         </div>
 
         <!-- Upload Button -->
@@ -53,14 +58,9 @@
           <!-- Screenshots -->
           <h2 class="mb-4 text-xl">Select a Thumbnail</h2>
           <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
-            <div class="border-8 cursor-pointer border-green-400">
-              <img src="../src/assets/img/1.jpg">
-            </div>
-            <div class="border-8 cursor-pointer border-transparent">
-              <img src="../src/assets/img/2.jpg">
-            </div>
-            <div class="border-8 cursor-pointer border-transparent">
-              <img src="../src/assets/img/3.jpg">
+            <div *ngFor="let screenshot of screenshots; let i = index"
+                 class="border-8 cursor-pointer border-green-400">
+              <img [src]="screenshot | safeURL">
             </div>
           </div>
 

@@ -32,6 +32,8 @@ export class UploadComponent implements OnDestroy {
 
   task?: AngularFireUploadTask
 
+  screenshots: string[] = []
+
 
   title = new FormControl('', {
     validators: [Validators.required, Validators.minLength(3)], nonNullable: true
@@ -110,6 +112,11 @@ export class UploadComponent implements OnDestroy {
   }
 
   async storeFile($event: Event) {
+
+    if (this.ffmpegService.isRunning){
+      return;
+    }
+
     this.isDragOver = false;
     this.file = ($event as DragEvent).dataTransfer ? ($event as DragEvent).dataTransfer?.files.item(0) ?? null :
       ($event.target as HTMLInputElement).files?.item(0) ?? null;
@@ -119,9 +126,9 @@ export class UploadComponent implements OnDestroy {
       return;
     }
 
-    await this.ffmpegService.getScreenShots(this.file);
+    this.screenshots = await this.ffmpegService.getScreenShots(this.file);
 
-    this.title.setValue(this.file.name.replace('.mp4', ''));
+    this.title.setValue(this.file.name.replace(/\.[^/.]+$/, ""));
 
     this.nextStep = true;
   }

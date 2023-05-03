@@ -6,6 +6,7 @@ import {createFFmpeg, fetchFile} from "@ffmpeg/ffmpeg";
 })
 export class FfmpegService {
 
+  isRunning: boolean = false;
   isReady: boolean = false;
   private ffmpeg;
 
@@ -25,6 +26,9 @@ export class FfmpegService {
   }
 
   async getScreenShots(file: File) {
+
+    this.isRunning = true;
+
     if (!this.isReady) {
       await this.init();
     }
@@ -63,6 +67,8 @@ export class FfmpegService {
 
       screenshots.push(screenshotUrl)
     })
+
+    this.isRunning = false;
 
     return screenshots;
 
