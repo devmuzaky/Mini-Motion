@@ -56,10 +56,7 @@ export class UploadComponent implements OnDestroy {
   }
 
   uploadFile() {
-
     this.uploadForm.disable() // disable the form while uploading the file
-
-
     this.inSubmission = true;
     this.showAlert = true;
     this.alertColor = 'blue';
@@ -112,15 +109,17 @@ export class UploadComponent implements OnDestroy {
 
   }
 
-  storeFile($event: Event) {
+  async storeFile($event: Event) {
     this.isDragOver = false;
     this.file = ($event as DragEvent).dataTransfer ? ($event as DragEvent).dataTransfer?.files.item(0) ?? null :
       ($event.target as HTMLInputElement).files?.item(0) ?? null;
-
+    // check if the file is a video and set the file to null if it is not
     if (!this.file || this.file.type !== 'video/mp4') {
       this.file = null;
       return;
     }
+
+    await this.ffmpegService.getScreenShots(this.file);
 
     this.title.setValue(this.file.name.replace('.mp4', ''));
 
@@ -128,3 +127,4 @@ export class UploadComponent implements OnDestroy {
   }
 
 }
+
