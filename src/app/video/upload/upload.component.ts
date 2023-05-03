@@ -3,13 +3,12 @@ import {AngularFireAuth} from "@angular/fire/compat/auth";
 import {AngularFireStorage, AngularFireUploadTask} from "@angular/fire/compat/storage";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
-import {last, switchMap} from "rxjs";
+import {combineLatest, last, switchMap} from "rxjs";
 import {v4 as uuid} from 'uuid';
 
 import firebase from "firebase/compat/app";
 import {ClipService} from "../../services/clip/clip.service";
 import {FfmpegService} from "../../services/ffmpeg/ffmpeg.service";
-import {addWarning} from "@angular-devkit/build-angular/src/utils/webpack-diagnostics";
 
 @Component({
   selector: 'app-upload', templateUrl: './upload.component.html', styleUrls: ['./upload.component.scss']
@@ -78,8 +77,18 @@ export class UploadComponent implements OnDestroy {
     const ref = this.storage.ref(clipPath);
 
     this.screenshotTask = this.storage.upload(screenshotPath, screenshotBlob);
-    this.task.percentageChanges().subscribe((percentage) => {
-      this.percentage = percentage as number / 100;
+
+
+    combineLatest([
+      this.task.percentageChanges(),
+      this.screenshotTask.percentageChanges()
+    ]).subscribe((progress) => {
+      const [clipProgress, screenshotProgress] = progress
+      if (!clipProgress || !screenshotProgress) {
+        return;
+      }
+      const percentage = clipProgress + screenshotProgress;
+      this.percentage = percentage as number / 200;
     });
 
     this.task.snapshotChanges().pipe(last(), // emit the last event in the stream
