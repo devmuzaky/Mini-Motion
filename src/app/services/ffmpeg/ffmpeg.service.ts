@@ -36,7 +36,7 @@ export class FfmpegService {
     const data = await fetchFile(file);
     this.ffmpeg.FS('writeFile', file.name, data);
 
-    const seconds = [1, 2, 3]
+    const seconds = [1, 2, 3, 4, 5]
     const commands: string [] = []
 
     seconds.forEach(second => {
@@ -72,6 +72,11 @@ export class FfmpegService {
 
     return screenshots;
 
+  }
+
+  async blobFromUrl(url: string) {
+    const response = await fetch(url);
+    return await response.blob();
   }
 }
 

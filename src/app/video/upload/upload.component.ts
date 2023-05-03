@@ -9,6 +9,7 @@ import {v4 as uuid} from 'uuid';
 import firebase from "firebase/compat/app";
 import {ClipService} from "../../services/clip/clip.service";
 import {FfmpegService} from "../../services/ffmpeg/ffmpeg.service";
+import {addWarning} from "@angular-devkit/build-angular/src/utils/webpack-diagnostics";
 
 @Component({
   selector: 'app-upload', templateUrl: './upload.component.html', styleUrls: ['./upload.component.scss']
@@ -34,6 +35,7 @@ export class UploadComponent implements OnDestroy {
 
   screenshots: string[] = []
   selectedScreenshot: string = ''
+  screenshotTask?: AngularFireUploadTask
 
 
   title = new FormControl('', {
@@ -58,7 +60,7 @@ export class UploadComponent implements OnDestroy {
     this.task?.cancel(); // cancel the upload if the user leaves the page
   }
 
-  uploadFile() {
+  async uploadFile() {
     this.uploadForm.disable() // disable the form while uploading the file
     this.inSubmission = true;
     this.showAlert = true;
@@ -69,9 +71,13 @@ export class UploadComponent implements OnDestroy {
     const clipFileName = uuid();
     const clipPath = `clips/${clipFileName}.mp4`;
 
+    const screenshotBlob = await this.ffmpegService.blobFromUrl(this.selectedScreenshot);
+    const screenshotPath = `screenshots/${clipFileName}.png`;
+
     this.task = this.storage.upload(clipPath, this.file)
     const ref = this.storage.ref(clipPath);
 
+    this.screenshotTask = this.storage.upload(screenshotPath, screenshotBlob);
     this.task.percentageChanges().subscribe((percentage) => {
       this.percentage = percentage as number / 100;
     });
