@@ -32,7 +32,7 @@
           <h5>Drop your file here (mp4 only!)</h5>
 
           <span *ngIf="ffmpegService.isRunning"
-            class="material-icons text-center text-6xl p-8 animate-spin">
+                class="material-icons text-center text-6xl p-8 animate-spin">
             autorenew
           </span>
         </div>
@@ -53,13 +53,19 @@
         </app-alert>
 
         <!-- Form -->
-        <form (ngSubmit)="uploadFile()" [formGroup]="uploadForm"
-        >
+        <form (ngSubmit)="uploadFile()" [formGroup]="uploadForm">
+
           <!-- Screenshots -->
           <h2 class="mb-4 text-xl">Select a Thumbnail</h2>
           <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
-            <div *ngFor="let screenshot of screenshots; let i = index"
-                 class="border-8 cursor-pointer border-green-400">
+            <div (click)="selectedScreenshot = screenshot"
+                 *ngFor="let screenshot of screenshots;"
+                 [ngClass]="{
+                    'border-green-400': screenshot === selectedScreenshot,
+                    'border-transparent': screenshot !== selectedScreenshot
+                    }"
+                 class="border-8 cursor-pointer"
+            >
               <img [src]="screenshot | safeURL">
             </div>
           </div>

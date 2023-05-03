@@ -15,24 +15,25 @@ import {FfmpegService} from "../../services/ffmpeg/ffmpeg.service";
 })
 export class UploadComponent implements OnDestroy {
 
-  isDragOver = false;
-  file: File | null = null;
-  nextStep = false;
+  isDragOver = false
+  file: File | null = null
+  nextStep = false
 
-  showAlert = false;
-  alertColor = 'blue';
-  alertMessage = 'Please wait! Your video is being uploaded.';
-  inSubmission = false;
+  showAlert = false
+  alertColor = 'blue'
+  alertMessage = 'Please wait! Your video is being uploaded.'
+  inSubmission = false
 
-  percentage = 0;
+  percentage = 0
 
-  showPercentage = false;
+  showPercentage = false
 
-  user: firebase.User | null = null;
+  user: firebase.User | null = null
 
   task?: AngularFireUploadTask
 
   screenshots: string[] = []
+  selectedScreenshot: string = ''
 
 
   title = new FormControl('', {
@@ -113,7 +114,7 @@ export class UploadComponent implements OnDestroy {
 
   async storeFile($event: Event) {
 
-    if (this.ffmpegService.isRunning){
+    if (this.ffmpegService.isRunning) {
       return;
     }
 
@@ -128,10 +129,13 @@ export class UploadComponent implements OnDestroy {
 
     this.screenshots = await this.ffmpegService.getScreenShots(this.file);
 
+    this.selectedScreenshot = this.screenshots[0];
+
     this.title.setValue(this.file.name.replace(/\.[^/.]+$/, ""));
 
     this.nextStep = true;
   }
+
 
 }
 
