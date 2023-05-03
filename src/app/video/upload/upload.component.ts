@@ -3,7 +3,7 @@ import {AngularFireAuth} from "@angular/fire/compat/auth";
 import {AngularFireStorage, AngularFireUploadTask} from "@angular/fire/compat/storage";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
-import {combineLatest, last, switchMap} from "rxjs";
+import {combineLatest, forkJoin, switchMap} from "rxjs";
 import {v4 as uuid} from 'uuid';
 
 import firebase from "firebase/compat/app";
@@ -74,9 +74,11 @@ export class UploadComponent implements OnDestroy {
     const screenshotPath = `screenshots/${clipFileName}.png`;
 
     this.task = this.storage.upload(clipPath, this.file)
-    const ref = this.storage.ref(clipPath);
+    const clipRef = this.storage.ref(clipPath);
 
     this.screenshotTask = this.storage.upload(screenshotPath, screenshotBlob);
+
+    const screenshotRef = this.storage.ref(screenshotPath);
 
 
     combineLatest([
@@ -91,19 +93,31 @@ export class UploadComponent implements OnDestroy {
       this.percentage = percentage as number / 200;
     });
 
-    this.task.snapshotChanges().pipe(last(), // emit the last event in the stream
-      switchMap(() => ref.getDownloadURL()) // get the download url of the file
-    ).subscribe({
-      next: async (url) => {
+    forkJoin([
+      this.task.snapshotChanges(),
+      this.screenshotTask.snapshotChanges()
+    ]).pipe(
+      switchMap(() => forkJoin([
+        clipRef.getDownloadURL(),
+        screenshotRef.getDownloadURL()
+      ]))).subscribe({
+
+      next: async (urls) => {
+
+        const [clipURL, screenshotURL] = urls
 
         const clip = {
           uid: this.user?.uid as string,
           displayName: this.user?.displayName as string,
           title: this.title.value,
           fileName: `${clipFileName}.mp4`,
-          url,
+          url: clipURL,
+          screenshotURL,
+          screenshotFileName: `${clipFileName}.png`,
           timestamp: firebase.firestore.FieldValue.serverTimestamp()
         }
+
+
         const clipDocRef = await this.clipService.createClip(clip); // create the clip in the database and get the reference
 
         this.alertColor = 'green';

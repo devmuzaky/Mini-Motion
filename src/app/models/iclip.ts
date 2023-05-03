@@ -7,7 +7,9 @@ export default interface IClip {
   title: string;
   fileName: string;
   url: string;
+  screenshotURL: string;
   timestamp: firebase.firestore.FieldValue; // server timestamp is a special type of field value that is calculated on the server
   docID?: string;
+  screenshotFileName: string;
 }
 
