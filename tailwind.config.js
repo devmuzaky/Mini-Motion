@@ -1,21 +1,8 @@
-/** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: [
-    './src/**/*.{html,ts}',
-  ],
-  safeList: [
-    'bg-blue-400',
-    'bg-green-400',
-    'bg-red-400'
-  ],
-  darkMode: false,
+  content: ['./src/**/*.{html,ts}'],
+  safelist: ['bg-blue-400', 'bg-green-400', 'bg-red-400'],
   theme: {
     extend: {},
   },
-  plugins: [
-    // require('postcss-import'),
-    // require('tailwindcss'),
-    // require('autoprefixer'),
-  ],
+  plugins: [],
 }
-
