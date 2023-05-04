@@ -1,12 +1,9 @@
 import {Component, OnInit} from '@angular/core';
-import {update} from "@angular/fire/database";
 import {ActivatedRoute, Params, Router} from "@angular/router";
-import firebase from "firebase/compat";
 import {BehaviorSubject} from "rxjs";
 import IClip from "../../models/iclip";
 import {ClipService} from "../../services/clip/clip.service";
 import {ModalService} from "../../services/modal/modal.service";
-import QueryDocumentSnapshot = firebase.firestore.QueryDocumentSnapshot;
 
 @Component({
   selector: 'app-manage',
@@ -99,4 +96,16 @@ export class ManageComponent implements OnInit {
   }
 
 
+  async copyToClipboard($event: MouseEvent, docID: string | undefined) {
+    $event.preventDefault();
+
+    if (!docID) {
+      return;
+    }
+
+    const url = `${location.origin}/clip/${docID}`;
+
+    await navigator.clipboard.writeText(url);
+
+  }
 }
