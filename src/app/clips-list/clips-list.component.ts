@@ -1,10 +1,12 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ClipService} from "../services/clip/clip.service";
+import {DatePipe} from "@angular/common";
 
 @Component({
   selector: 'app-clips-list',
   templateUrl: './clips-list.component.html',
-  styleUrls: ['./clips-list.component.scss']
+  styleUrls: ['./clips-list.component.scss'],
+  providers: [DatePipe]
 })
 export class ClipsListComponent implements OnInit, OnDestroy {
 
