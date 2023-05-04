@@ -107,5 +107,7 @@ export class ManageComponent implements OnInit {
 
     await navigator.clipboard.writeText(url);
 
+    alert('Copied to clipboard');
+
   }
 }

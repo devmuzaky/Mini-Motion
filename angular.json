@@ -32,13 +32,18 @@
                 "input": "node_modules/@ffmpeg/core/dist",
                 "output": "node_modules/@ffmpeg/core/dist",
                 "glob": "**/*"
-
               }
             ],
             "styles": [
               "src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [],
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "node_modules"
+              ]
+            }
+
           },
           "configurations": {
             "production": {
@@ -70,8 +75,7 @@
                 }
               ]
             }
-          },
-          "defaultConfiguration": "production"
+          }
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
@@ -115,6 +119,7 @@
             ],
             "scripts": []
           }
+
         }
       }
     }

@@ -37,7 +37,6 @@ import { FbTimestampPipe } from './pipes/fbTimestamp/fb-timestamp.pipe';
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
     AngularFirestoreModule,
-    VideoModule,
     AngularFireStorageModule,
     AppRoutingModule
   ],
