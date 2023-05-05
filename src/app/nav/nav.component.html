@@ -1,12 +1,23 @@
 <!-- Header -->
+
+
+
 <header class="bg-secondary" id="header">
+
+
   <nav class="container mx-auto flex justify-start items-center py-8 px-4">
     <!-- App Name -->
-    <a class="text-3xl text-indigo-400 font-bold uppercase mr-4" routerLink="/">Clips</a>
+    <a class="text-3xl text-indigo-400 font-bold uppercase mr-4" routerLink="/">Shorts</a>
 
-    <div class="flex flex-grow items-center">
+    <section class="flex flex-grow top-nav items-center">
+
+      <input id="menu-toggle" type="checkbox" />
+      <label class='menu-button-container' for="menu-toggle">
+        <div class='menu-button'></div>
+      </label>
+
       <!-- Primary Navigation -->
-      <ul class="flex flex-row mt-1">
+      <ul class="flex flex-row menu mt-1">
         <!-- Navigation Links -->
         <li *ngIf="!(auth.isAuthenticated$ | async); else authLinks ">
           <a class="px-2" href="#" (click)="openModal($event)">Login / Register</a>
@@ -38,17 +49,14 @@
             <span class="ml-1">English</span>
           </a>
         </li>
-        <li style="display: none;">
-          <a href="#">
-            <img
-              alt="fr"
-              class="inline-block" height="14"
-              src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAABDBAMAAACYZb3pAAAAHlBMVEUpQqK2q8384OL3qa/tKTkAI5Wrt9z////5t7ztKTlzpJCAAAAABXRSTlP++vjs1BQWlgsAAAAxSURBVHgBYmRAA4yKaAJCAugqQgHtyzENAAAAAiD7pzaDr4MfRVEURVGU36IoipK5FLWNJ6UFusbWAAAAAElFTkSuQmCC"
-              width="22">
-            <span class="ml-1">French</span>
-          </a>
-        </li>
       </ul>
-    </div>
+    </section>
+
   </nav>
 </header>
+
+
+
+
+
+

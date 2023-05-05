@@ -38,8 +38,6 @@ export class ClipsListComponent implements OnInit, OnDestroy {
     }
   }
 
-
-
   onChooseClip() {
     window.scrollTo(0, 75);
 

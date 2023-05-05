@@ -4,6 +4,8 @@ import {Router} from "@angular/router";
 import {ModalService} from "../services/modal/modal.service";
 import {AuthService} from "../user/services/auth.service";
 
+
+
 @Component({
   selector: 'app-nav',
   templateUrl: './nav.component.html',
@@ -12,12 +14,12 @@ import {AuthService} from "../user/services/auth.service";
 export class NavComponent {
 
 
+
   constructor(
     public modalService: ModalService,
     public auth: AuthService,
 
   ) {
-
   }
 
   openModal($event: Event) {
