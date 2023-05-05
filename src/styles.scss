@@ -77,8 +77,6 @@ body {
   border-bottom: 3px solid #fff;
 }
 
-
-
 .ghost {
   border-radius: 150px 150px 7px 7px;
   -webkit-animation: ghost 1.5s ease-in-out alternate infinite;
@@ -204,3 +202,22 @@ body {
     opacity: 0;
   }
 }
+
+// style scrollbar
+
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: #161d31;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #283046;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #283046;
+}
+

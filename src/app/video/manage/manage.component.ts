@@ -110,4 +110,5 @@ export class ManageComponent implements OnInit {
     alert('Copied to clipboard');
 
   }
+
 }
