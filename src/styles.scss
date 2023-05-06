@@ -6,13 +6,77 @@ body {
   background-color: #161d31;
 }
 
+.bg-secondary {
+  background-color: #283046;
+}
+
+
+body.dark-mode {
+  background-color: rgba(0, 0, 0);
+  color: #f8f8f8;
+
+  .bg-secondary {
+    background-color: rgb(0, 0, 0);
+  }
+}
+
+
 .material-icons.text-base {
   font-size: inherit;
 }
 
-.bg-secondary {
-  background-color: #283046;
+.toggle-button {
+  -webkit-appearance: none;
+  outline: none;
+  width: 60px;
+  height: 30px;
+  background-color: #212121;
+  border-radius: 50px;
+  position: relative;
+  transition: .4s;
 }
+
+
+.toggle-button:before {
+  content: "";
+  position: absolute;
+  height: 30px;
+  width: 35px;
+  border-radius: 50px;
+  top: 0;
+  bottom: 0;
+  background-color: #bdbdbd;
+  transition: .4s;
+}
+
+.toggle-button:checked {
+  background-color: #bdbdbd;
+}
+
+.toggle-button:checked:before {
+  transform: translate(100%);
+  background-color: #212121;
+  transition: .4s;
+}
+
+.bg-gradient {
+  background: linear-gradient(132deg, #FC415A, #591BC5, #212335);
+  background-size: 400% 400%;
+  animation: gradient 10s ease infinite;
+}
+
+.cube {
+  position: absolute;
+  top: 100%;
+  left: 45%;
+  width: 10px;
+  height: 10px;
+  border: solid 1px #D7D4E4;
+  transform-origin: top left;
+  transform: scale(0) rotate(0deg) translate(-50%, -50%);
+  animation: cube 8s ease-in forwards infinite;
+}
+
 
 .bg-gradient {
   background: linear-gradient(132deg, #FC415A, #591BC5, #212335);
@@ -76,6 +140,7 @@ body {
   display: block;
   border-bottom: 3px solid #fff;
 }
+
 
 .ghost {
   border-radius: 150px 150px 7px 7px;
@@ -203,21 +268,20 @@ body {
   }
 }
 
-// style scrollbar
 
 ::-webkit-scrollbar {
   width: 12px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #161d31;
+  background: #273036;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #283046;
+  background: rgb(65, 82, 103);
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #283046;
+  background: #273036;
 }
 
