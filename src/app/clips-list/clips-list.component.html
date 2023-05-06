@@ -4,8 +4,11 @@
      [routerLink]="['/' ,'clip', clip.docID]"
      class="mt-6 rounded-tl-2xl rounded-br-2xl shadow-xl bg-secondary transform hover:-translate-y-2 hover:shadow-2xl hover:bg-gray-700 transition duration-300">
 
+    <div class="h-4/6	 w-full">
+      <img [src]="clip.screenshotURL" class="card-img-top min-h-full max-h-full min-w-full max-w-full  rounded-tl-2xl " crossorigin>
+
+    </div>
     <!-- Image -->
-    <img [src]="clip.screenshotURL" class="card-img-top rounded-tl-2xl h-3/5 w-full" crossorigin>
 
     <!-- Shape -->
     <div class="relative">
