@@ -20,7 +20,7 @@
       <ul class="flex flex-row menu mt-1">
         <!-- Navigation Links -->
         <li *ngIf="!(auth.isAuthenticated$ | async); else authLinks ">
-          <a class="px-2"  (click)="openModal($event)">Login / Register</a>
+          <a class="px-2 cursor-pointer"  (click)="openModal($event)">Login / Register</a>
         </li>
 
         <li>
