@@ -2,6 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
+$primary: rgba(0, 0, 0);
+$secondary: rgba(0, 0, 0);
+
+$primary-light: #161d31;
+$secondary-light: #283046;
+
+
+
 body {
   background-color: #161d31;
 }

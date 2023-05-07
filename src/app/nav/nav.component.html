@@ -1,7 +1,6 @@
 <!-- Header -->
 
 
-
 <header class="bg-secondary" id="header">
 
 
@@ -11,7 +10,7 @@
 
     <section class="flex flex-grow top-nav items-center">
 
-      <input id="menu-toggle" type="checkbox" />
+      <input id="menu-toggle" type="checkbox"/>
       <label class='menu-button-container' for="menu-toggle">
         <div class='menu-button'></div>
       </label>
@@ -19,29 +18,32 @@
       <!-- Primary Navigation -->
       <ul class="flex flex-row menu mt-1">
         <!-- Navigation Links -->
-        <li *ngIf="!(auth.isAuthenticated$ | async); else authLinks ">
-          <a class="px-2 cursor-pointer"  (click)="openModal($event)">Login / Register</a>
-        </li>
-
-        <li>
-          <a class="px-2" routerLink="/about" routerLinkActive="text-indigo-400"
-          >About</a>
-        </li>
 
         <ng-template #authLinks>
-          <li><a class="px-2" routerLink="/manage" routerLinkActive="text-indigo-400"
-                 [routerLinkActiveOptions]="{exact: true}" [queryParams]="{sort: 1}"
-          >Manage</a></li>
+          <li><a [queryParams]="{sort: 1}" [routerLinkActiveOptions]="{exact: true}" class="px-2"
+                 routerLink="/manage" routerLinkActive="text-indigo-400">Manage</a></li>
+
           <li><a class="px-2" routerLink="/upload" routerLinkActive="text-indigo-400">Upload</a></li>
-          <li><a class="px-2 cursor-pointer "  (click)="auth.logout($event)">Logout</a></li>
+
+          <li><a (click)="auth.logout($event)" class="px-2 cursor-pointer ">Logout</a></li>
         </ng-template>
 
+
+        <li *ngIf="!(auth.isAuthenticated$ | async); else authLinks ">
+          <a (click)="openModal($event)" class="px-2 cursor-pointer">Login / Register</a>
+        </li>
+
+        <li><a class="px-2" routerLink="/about" routerLinkActive="text-indigo-400">Contact</a></li>
+
+
+
+
       </ul>
-<!--      <div class="flex flex-row ml-auto">-->
-<!--        <div class="container">-->
-<!--          <input (click)="ontoggle()" class="toggle-button" type="checkbox">-->
-<!--        </div>-->
-<!--      </div>-->
+      <!--      <div class="flex flex-row ml-auto">-->
+      <!--        <div class="container">-->
+      <!--          <input (click)="ontoggle()" class="toggle-button" type="checkbox">-->
+      <!--        </div>-->
+      <!--      </div>-->
 
     </section>
 

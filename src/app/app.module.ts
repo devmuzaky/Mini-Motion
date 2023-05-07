@@ -17,6 +17,7 @@ import {VideoModule} from "./video/video.module";
 import {ClipComponent} from './clip/clip.component';
 import { ClipsListComponent } from './clips-list/clips-list.component';
 import { FbTimestampPipe } from './pipes/fbTimestamp/fb-timestamp.pipe';
+import {ReactiveFormsModule} from "@angular/forms";
 
 
 
@@ -31,15 +32,16 @@ import { FbTimestampPipe } from './pipes/fbTimestamp/fb-timestamp.pipe';
     ClipsListComponent,
     FbTimestampPipe
   ],
-  imports: [
-    BrowserModule,
-    UserModule,
-    AngularFireModule.initializeApp(environment.firebase),
-    AngularFireAuthModule,
-    AngularFirestoreModule,
-    AngularFireStorageModule,
-    AppRoutingModule
-  ],
+    imports: [
+        BrowserModule,
+        UserModule,
+        AngularFireModule.initializeApp(environment.firebase),
+        AngularFireAuthModule,
+        AngularFirestoreModule,
+        AngularFireStorageModule,
+        AppRoutingModule,
+        ReactiveFormsModule
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })
