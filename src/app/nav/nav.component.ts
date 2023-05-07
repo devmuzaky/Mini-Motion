@@ -17,9 +17,9 @@ export class NavComponent {
   ) {
   }
 
-  ontoggle() {
-    document.body.classList.toggle('dark-mode');
-  }
+  // ontoggle() {
+  //   document.body.classList.toggle('dark-mode');
+  // }
 
   openModal($event: Event) {
     $event.preventDefault();
