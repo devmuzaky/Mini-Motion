@@ -20,8 +20,11 @@
          class="mt-6 rounded-tl-2xl rounded-br-2xl shadow-xl bg-secondary flex flex-col justify-start">
 
       <!-- Image -->
-      <a href="#">
-        <img class="card-img-top rounded-tl-2xl w-full" [src]="clip.screenshotURL" crossorigin>
+      <a class="cursor-pointer">
+        <div class="image-style">
+
+          <img class="card-img-top min-h-full max-h-full min-w-full max-w-full   rounded-tl-2xl w-full" [src]="clip.screenshotURL" crossorigin>
+        </div>
       </a>
 
       <!-- Body -->
@@ -38,7 +41,7 @@
       </div>
 
       <!-- Actions -->
-      <div class="flex text-center text-2xl bg-gray-800 p-2 mt-auto">
+      <div class="flex h-15 text-center text-2xl bg-gray-800 p-2 mt-auto">
         <a (click)="openModal($event, clip)"
            class="flex-1 p-2 border-right border-r-2 border-gray-700 transition hover:text-indigo-400" href="#">
           <span class="material-icons text-base">build</span>
