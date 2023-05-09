@@ -6,7 +6,7 @@ MiniMotion - A Video Streaming Application
 ------------------------------------------
 
 
-[Live Demo](https://www.moezaky.me/) | [Technologies used](#technologies-used) | [Key Features](#key-features) | [Installation](#installation) | [License](#license) | [Contact](#contact)
+[Live Demo](https://www.moezaky.me/) | [Video Demo](#videoDemo) | [Technologies used](#technologies-used) | [Key Features](#key-features) | [Installation](#installation) | [License](#license) | [Contact](#contact)
 
 
 </div>
@@ -37,6 +37,21 @@ Welcome to MiniMotion!
 <p style="color: whitesmoke;">Join our community of fellow gaming enthusiasts and share your videos with friends and family. With MiniMotion, you can be confident that your videos will be seen by thousands of viewers, giving you the recognition you deserve!</p>
 <p style="color: whitesmoke;">Don't worry if you're new to the game, MiniMotion has got you covered. We've got everything you need to take your gaming content to the next level. So what are you waiting for? Sign up today and start sharing your gaming adventures with the world!</p>
 </div>
+
+<hr>
+
+
+<div align="center" #videoDemo
+style="font-size: 1em; font-weight: bold; color: #0af1a0;" >
+
+
+Video Demo
+-----------------
+  
+https://github.com/devmuzaky/Mini-Motion/assets/55113727/5b0ca560-f011-48b9-b80f-4272d5ffdf87
+
+</div>
+
 
 <hr>
 
