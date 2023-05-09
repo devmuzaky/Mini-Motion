@@ -85,7 +85,8 @@ Key Features
 -----------------
 </div>
 
-<ol
+<ol>
+    
   <li><span style="font-size: 16px; font-weight: bold; color: #00d8ff;">User Registration:</span> Users can easily create an account to access all of the app's functionalities and start uploading their videos.</li>
   <li><span style="font-size: 16px; font-weight: bold; color: #00d8ff;">User Login:</span> Registered users can log in to their account and access their videos and profile.</li>
   <li><span style="font-size: 16px; font-weight: bold; color: #00d8ff;">Drag & Drop Video Upload:</span> Users can easily upload their video clips by simply dragging and dropping them onto the upload page. Alternatively, users can also use the regular upload button to select the desired video from their local system.</li>
