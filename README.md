@@ -51,7 +51,7 @@ Technologies Used
 
 
 <ul style="
-     list-style-type: none;
+     list-style: none;
       flex-wrap: wrap;
       justify-content: center;
       gap: 1em;
