@@ -50,15 +50,7 @@ Technologies Used
 </div>
 
 
-<ul style="
-     list-style: none;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 1em;
-      font-size: 15px;
-      font-weight: bold;
-      color: rgba(255,255,255,0.78);" >
-
+<ol style="flex-wrap: wrap; justify-content: center; gap: 1em; font-size: 15px; font-weight: bold; color: rgba(255,255,255,0.78);" >
 <li>1. <span 
 style="font-size: 16px; font-weight: bold; color: #00d8ff;">Angular</span>  15 </li>
 <li>2. <span 
@@ -81,7 +73,7 @@ style="font-size: 16px; font-weight: bold; color: #00d8ff;">Infinite Scroll:</sp
 style="font-size: 16px; font-weight: bold; color: #00d8ff;">VideoJs:</span> The popular HTML5 video player that provides a range of features and tools for displaying and manipulating video content.
 <li>11. <span 
 style="font-size: 16px; font-weight: bold; color: #00d8ff;">Tailwind CSS:</span>
-</ul>
+</ol>
 
 <hr>
 
