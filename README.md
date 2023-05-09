@@ -51,27 +51,27 @@ Technologies Used
 
 
 <ol style="flex-wrap: wrap; justify-content: center; gap: 1em; font-size: 15px; font-weight: bold; color: rgba(255,255,255,0.78);" >
-<li>1. <span 
+<li><span 
 style="font-size: 16px; font-weight: bold; color: #00d8ff;">Angular</span>  15 </li>
-<li>2. <span 
+<li><span 
 style="font-size: 16px; font-weight: bold; color: #00d8ff;">Rust:</span>  Programming language that's perfect for building high-performance web applications.
-<li>3. <span 
+<li><span 
 style="font-size: 16px; font-weight: bold; color: #00d8ff;">WebAssembly using FFMpeg:</span>  I've used WebAssembly to harness the power of FFmpeg to generate thumbnails from uploaded clips and manipulate video content in real-time.
-<li>4. <span 
+<li><span 
 style="font-size: 16px; font-weight: bold; color: #00d8ff;">Firebase:</span> The cloud-based platform that provides me with robust authentication, storage, and Firestore services to develop and deploy web applications.
-<li>5. <span 
+<li><span 
 style="font-size: 16px; font-weight: bold; color: #00d8ff;">Advanced RxJs operators:</span>  I've leveraged advanced RxJs operators such as combineLatest, forkJoin, and switchMap to handle complex data flows and improve the overall application performance.
-<li>6. <span 
+<li><span 
 style="font-size: 16px; font-weight: bold; color: #00d8ff;">Advanced Routing Techniques:</span>  I've implemented advanced routing techniques such as resolvers, interceptors, guards, and lazy loading to enable seamless navigation and enhance the user experience.
-<li>7. <span 
+<li><span 
 style="font-size: 16px; font-weight: bold; color: #00d8ff;">Reactive Forms Validation:</span>  I've used reactive forms validation, including async validators and input masking, to ensure that user input is always valid and secure.
-<li>8. <span 
+<li><span 
 style="font-size: 16px; font-weight: bold; color: #00d8ff;">SharedArrayBuffer:</span> I've used SharedArrayBuffer to enable shared storage between the main thread and web worker, improving the application's overall efficiency.I've used SharedArrayBuffer to enable shared storage between the main thread and web worker, improving the application's overall efficiency.
-<li>9. <span 
+<li><span 
 style="font-size: 16px; font-weight: bold; color: #00d8ff;">Infinite Scroll:</span> I've implemented infinite scroll manually to enable users to browse through large amounts of content without having to load everything at once.
-<li>10. <span 
+<li><span 
 style="font-size: 16px; font-weight: bold; color: #00d8ff;">VideoJs:</span> The popular HTML5 video player that provides a range of features and tools for displaying and manipulating video content.
-<li>11. <span 
+<li><span 
 style="font-size: 16px; font-weight: bold; color: #00d8ff;">Tailwind CSS:</span>
 </ol>
 
@@ -85,7 +85,7 @@ Key Features
 -----------------
 </div>
 
-<ul>
+<ol
   <li><span style="font-size: 16px; font-weight: bold; color: #00d8ff;">User Registration:</span> Users can easily create an account to access all of the app's functionalities and start uploading their videos.</li>
   <li><span style="font-size: 16px; font-weight: bold; color: #00d8ff;">User Login:</span> Registered users can log in to their account and access their videos and profile.</li>
   <li><span style="font-size: 16px; font-weight: bold; color: #00d8ff;">Drag & Drop Video Upload:</span> Users can easily upload their video clips by simply dragging and dropping them onto the upload page. Alternatively, users can also use the regular upload button to select the desired video from their local system.</li>
@@ -99,16 +99,16 @@ Key Features
   <li><span style="font-size: 16px; font-weight: bold; color: #00d8ff;">Manage Page:</span> After getting authenticated, users can visit the manage page to control their uploaded clips by editing, deleting, and sorting them as desired.</li>
   <li><span style="font-size: 16px; font-weight: bold; color: #00d8ff;">Upload Page:</span> After getting authenticated, users can visit the upload page to upload their clips and select a thumbnail and video title.</li>
   <li><span style="font-size: 16px; font-weight: bold; color: #00d8ff;">404 Page:</span> The app features a custom 404 page in case users try to access an unregistered route or encounter a broken link.</li>
-</ul>
+</o>
 
 <hr>
 
 
-<div align="center" #installation
-style="font-size: 1em; font-weight: bold; color: #0af1a0;" >
+<div align="center" #installation style="font-size: 1em; font-weight: bold; color: #0af1a0;" >
 
 Installation
 -----------------
+  
 </div>
 
 <ul>
